@@ -1,5 +1,7 @@
 ## Run instructions:
 
+This project was built using Visual Studio 2022. Build and Run will create a console output application.
+
 ## Problem 1 design
 For Problem 1, I used the producer/consumer approach whereby
 **Timer** produces **Events** that are then added to a queue (**EventQueue**) 
