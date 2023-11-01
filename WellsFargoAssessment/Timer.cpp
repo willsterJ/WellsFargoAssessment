@@ -13,7 +13,7 @@ Event::Event(int ID, timeType creationTime, timeType executionTime)
 
 /* ************************** EventQueue ************************** */
 
-void EventQueue::add(std::shared_ptr<Event> event) {
+void EventQueue::add(const std::shared_ptr<Event>& event) {
     std::lock_guard<std::mutex> lock(m_mutex);
     m_queue.push_back(event);
 }
@@ -57,7 +57,7 @@ void EventQueue::sort() {
 
 /* **************************** Timer **************************** */
 
-Timer::Timer(std::shared_ptr<EventQueue>& eventQueue)
+Timer::Timer(const std::shared_ptr<EventQueue>& eventQueue)
     : m_eventQueue(eventQueue)
     , m_runThread(false) {
 }
@@ -103,7 +103,7 @@ void Timer::produceEvents() {
 
 /* **************************** Worker **************************** */
 
-Worker::Worker(std::shared_ptr<EventQueue>& eventQueue)
+Worker::Worker(const std::shared_ptr<EventQueue>& eventQueue)
     : m_eventQueue(eventQueue)
     , m_runThread(false) {
 }

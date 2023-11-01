@@ -27,7 +27,7 @@ private:
     std::mutex m_mutex;
 public:
     // add event to EventQueue
-    void add(std::shared_ptr<Event> event);
+    void add(const std::shared_ptr<Event>& event);
     // peeks at front of EventQueue
     std::shared_ptr<Event> peek();
     // pops and returns Event from EventQueue following FIFO
@@ -43,7 +43,7 @@ private:
     std::future<void> m_eventProducerFuture;
     bool m_runThread;
 public:
-    Timer(std::shared_ptr<EventQueue>& eventQueue);
+    Timer(const std::shared_ptr<EventQueue>& eventQueue);
     // starts Timer process
     void start();
     // stops Timer process
@@ -61,7 +61,7 @@ private:
     std::vector<Job> m_jobsVec;
     std::mutex m_mutex;
 public:
-    Worker(std::shared_ptr<EventQueue>& eventQueue);
+    Worker(const std::shared_ptr<EventQueue>& eventQueue);
     // start worker
     void start();
     // stops worker
