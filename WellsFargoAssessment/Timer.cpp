@@ -186,8 +186,14 @@ void Worker::runJob(const std::shared_ptr<Event>& event, const Job &job) {
     auto delayTime_ms = chronoUtility<milliseconds>::getElapsedTime(event->m_executionTime, now);
     printf("WORKER RUN JOB : JobID=%d, EventID=%d, CurrentTime=%lldms, TimeLag=%lldms\n",
            job.m_ID, event->m_ID, currentTime_ms, delayTime_ms);
-    // run the job function
-    job.m_function();
+
+    try {
+        // run the job function
+        job.m_function();
+    }
+    catch (...) {
+        // catch exceptions
+    }
 }
 
 /* **************************** Worker **************************** */
