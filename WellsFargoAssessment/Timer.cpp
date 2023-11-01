@@ -181,6 +181,7 @@ void Worker::removeJob(int jobID) {
 }
 
 void Worker::runJob(const std::shared_ptr<Event>& event, const Job &job) {
+    std::lock_guard<std::mutex> lock(m_mutex);
     timeType now = std::chrono::system_clock::now();
     auto currentTime_ms = chronoUtility<milliseconds>::getElapsedTime(now);
     auto delayTime_ms = chronoUtility<milliseconds>::getElapsedTime(event->m_executionTime, now);
