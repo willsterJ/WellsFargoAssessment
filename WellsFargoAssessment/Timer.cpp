@@ -132,7 +132,7 @@ void Worker::consumeEvents() {
 
         // execute Event if currentTime >= Event.m_executionTime
         timeType now = std::chrono::system_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(now - event->m_executionTime).count();
+        auto duration = chronoUtility<milliseconds>::getElapsedTime(event->m_executionTime, now);
         if (duration >= 0) {
             executeEvent(event);
             m_eventQueue->pop();
